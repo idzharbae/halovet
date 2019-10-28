@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../logo.svg';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Home(){
   return(
@@ -17,7 +18,11 @@ function Home(){
       >
         Learn React
       </a>
-      <Button variant="danger">Danger !</Button>
+      <Button variant="danger">
+          <Link to="/test" style={{color: "white"}}>
+          Go to test
+          </Link>
+      </Button>
     </header>
   );
 }
