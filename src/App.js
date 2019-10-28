@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
-import { Button} from 'react-bootstrap';
-import Navigation from './main_layout/Navigation';
+import { Button } from 'react-bootstrap';
+import { Navigation, Footer } from './main_layout/main_layout';
 import './App.css';
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
         
         <Button variant="danger">Danger !</Button>
       </header>
+      <Footer />
     </div>
   );
 }
