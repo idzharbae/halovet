@@ -6,7 +6,7 @@ import {
   Route
 } from "react-router-dom";
 
-import  { Home, Test } from './pages/pages';
+import  { Home, Test, Register } from './pages/pages';
 import './App.css';
 
 function App() {
@@ -18,6 +18,14 @@ function App() {
             <Route path="/test">
               <Test />
             </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/login">
+              <Register />
+            </Route>
+
+            {/* DEFAULT ROUTE */}
             <Route path="/">
               <Home />
             </Route>
