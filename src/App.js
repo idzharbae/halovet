@@ -1,39 +1,25 @@
 import React from 'react';
 import { Navigation, Footer } from './main_layout/main_layout';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route
+  BrowserRouter as Router
 } from "react-router-dom";
+import Routes from './Routes';
+import { useRoutes } from 'hookrouter';
 
-import  { Home, Test, Register } from './pages/pages';
 import './App.css';
 
-function App() {
+function App(){
+  const routeResult = useRoutes(Routes);
   return (
-    <div className="App">
-      <Navigation />
-        <Router>
-          <Switch>
-            <Route path="/test">
-              <Test />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/login">
-              <Register />
-            </Route>
-
-            {/* DEFAULT ROUTE */}
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </Router>
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Navigation />
+          { routeResult }
+        <Footer />
+      </div>
+    </Router>
   );
 }
+
 
 export default App;

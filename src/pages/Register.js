@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Form, Col } from 'react-bootstrap';
 import './Register.css';
-import { Link } from 'react-router-dom';
 
 function Register(){
   return(
