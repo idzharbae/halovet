@@ -33,10 +33,11 @@ class Login extends React.Component {
     }
 
     render(){
-        console.log(this.props.state);
+        // console.log(this.props.state);
+        let arr = (this.props.state)? this.props.state.info : [];
         return(
             <header className="App-header">
-                {this.props.state.info.map( (val, index) => this.renderAlert(val, index) )}
+                { arr.map( (val, index) => this.renderAlert(val, index) )}
                 <Form action="#" method="POST">
                     <Form.Row>
                         <Form.Group as={Col} controlId="fromBasicEmail" sm={12} md={6}>
