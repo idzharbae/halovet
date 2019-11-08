@@ -15,16 +15,16 @@ class Footer extends Component {
             <ul>
             <li className="col-heading">Subheading</li>
             <li>
-                <i className="fa fa-phone" aria-hidden="true"></i><a href="tel:99-999-999-9999">99-999-999-9999</a>
+                <i className="fa fa-phone" aria-hidden="true"></i><a href="#">99-999-999-9999</a>
             </li>
             <li>
-                <i className="fa fa-mobile" aria-hidden="true"></i><a href="sms:99-999-999-9999">SMS Message</a>
+                <i className="fa fa-mobile" aria-hidden="true"></i><a href="#">SMS Message</a>
             </li>
             <li>
                 <i className="fa fa-map-marker" aria-hidden="true"></i><a href="#">Address</a>
             </li> 
             <li>
-                <i className="fa fa-envelope-square" aria-hidden="true"></i><a href="mailto:someone@yoursite.com?subject=Email Subject line">Email Us</a>  
+                <i className="fa fa-envelope-square" aria-hidden="true"></i><a href="#">Email Us</a>  
             </li> 
             </ul>
         </Col>     

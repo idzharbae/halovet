@@ -12,9 +12,9 @@ function Secret(){
       </p>
       
       <Button variant="danger">
-          <Link to="/" style={{color: "white"}}>
+          <a href="/" style={{color: "white"}}>
           Go to home
-          </Link>
+          </a>
       </Button>
     </header>
   );

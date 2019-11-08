@@ -1,5 +1,5 @@
 import React from "react";
-import  * as Pages from './pages/pages';
+import  * as Pages from '../pages';
 import Cookies from 'js-cookie';
 
 const Routes = {

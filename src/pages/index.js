@@ -1,7 +1,8 @@
 import Home from './Home';
-import Test from './Test';
 import Register from './Register';
 import Login from './Login';
+
+import Test from './Test';
 import Secret from './Secret';
 
 export{
