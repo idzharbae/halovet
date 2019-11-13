@@ -10,7 +10,13 @@ const Routes = {
   "/forum": () => <Pages.Forum />,
   "/secret" : () => (getSession())? 
                         <Pages.Secret />:
-                        <Pages.Login  state={ {info : [ { message:"Login terlebih dahulu.", show: true} ]} } />,
+                        <Pages.Login  state={ {alertMessage : [ 
+                          { 
+                            message:"Anda harus login terlebih dahulu.", 
+                            show: true,
+                            variant: "danger"
+                          } 
+                        ]} } />,
   "/test" : () => <Pages.Test />
 };
 

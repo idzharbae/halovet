@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Form, Col } from 'react-bootstrap';
+import { Button, Form, Col, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import queryString from 'query-string';
-import { withRouter } from 'react-router-dom';
+import update from 'immutability-helper';
 
 class Register extends React.Component{
   constructor(props) {
@@ -11,7 +11,22 @@ class Register extends React.Component{
       name: '',
       email: '',
       password: '',
+      alertMessage: []
     };
+  }
+  addAlert(message, variant){
+    this.setState({
+      alertMessage: update(
+          this.state.alertMessage, {
+              $push : [
+                  {
+                      message: message, 
+                      show: true,
+                      variant: variant
+                  }
+              ] 
+          })
+    })
   }
   
   onChange = (e) => {
@@ -26,16 +41,49 @@ class Register extends React.Component{
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
-    axios.post('http://0.0.0.0:8000/account/register', queryString.stringify({ name, email, password }), config)
+    const data = queryString.stringify({ name, email, password }).replace(/%20/g,'+');
+    console.log(data);
+    axios.post('http://0.0.0.0:8000/account/register', data, config)
       .then((result) => {
         console.log(result);
-        window.location.href = '/login?redirectionMessage=Silahkan%20login.';
+        const response = result.data;
+        if(response.Status === true)
+          window.location.href = '/login?redirectionMessage=Silahkan%20login.';
+        else
+          this.addAlert('Register gagal: '+response.Message, "danger");
+      }).catch((e) => {
+        this.addAlert('Register gagal: terjadi kesalahan pada server.', 'danger');
+        this.addAlert(e.response.data, 'danger');
+        console.log(e.response);
       });
   }
-
+  closeAlert(index){
+    this.setState({
+      alertMessage: update(
+          this.state.alertMessage, { 
+              // index harus di kurungin gini kalau pakai variable
+              [index] : {
+                  $set: { 
+                      show:false 
+                  } 
+              } 
+          } )
+    })
+  }
+  
+  renderAlert(val, index){
+      return <Alert 
+          hidden={ !val.show }
+          variant={ val.variant }
+          key={ index } 
+          dismissible 
+          onClose={ () => this.closeAlert(index) }>{ val.message } </Alert >;
+  }
   render(){
+    const arr = this.state.alertMessage;
     return(
         <header className="App-header">
+        { arr.map( (val, index) => this.renderAlert(val, index) )}
         <Form onSubmit={this.onSubmit}>
             <Form.Row>
                 <Form.Group as={Col} controlId="fromBasicName" sm={12} md={6}>
@@ -54,7 +102,7 @@ class Register extends React.Component{
             <Form.Row>
                 <Form.Group as={Col} controlId="formBasicPassword" sm={12} md={6}>
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control onChange={this.onChange} name="password" type="password" placeholder="Password" />
                 </Form.Group>
             </Form.Row>
             <Form.Row>
@@ -71,4 +119,4 @@ class Register extends React.Component{
   }
 }
 
-export default withRouter(Register);
+export default Register;
