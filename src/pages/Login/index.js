@@ -1,36 +1,51 @@
 import React from 'react';
 import { Button, Form, Col, Alert } from 'react-bootstrap';
 import './Login.css';
+import update from 'immutability-helper';
 
 class Login extends React.Component {
     constructor(props){
         super(props);
-        this.state = { info : [] };
+        this.state = { redirectionMessage : [] };
     }
 
     componentDidMount(){
+        // get redirection message from props
         if(this.props.state)
-            this.setState({ info : this.props.state.info});
+            this.setState({ redirectionMessage : this.props.state.redirectionMessage});
+        // get redirection message from url param
+        const urlParams = new URLSearchParams(window.location.search);
+        const data = urlParams.get('redirectionMessage');
+        if(data)
+            this.setState({
+                redirectionMessage: update(
+                    this.state.redirectionMessage, {
+                        $push : [
+                            {
+                                message: data, 
+                                show: true
+                            }
+                        ] 
+                    })
+            })
     }
 
     componentWillUnmount(){
-        this.setState({ info : [] });
+        this.setState({ redirectionMessage : [] });
     }
 
     closeAlert(index){
-        this.setState(state => {
-            const list = state.info.map((item, j) => {
-                console.log(j);
-              if (j === index) {
-                return {message : item.message, show : false};
-              } else {
-                return item;
-              }
-            });
-            return {
-              list,
-            };
-        });
+        this.setState({
+            redirectionMessage: update(
+                this.state.redirectionMessage, { 
+                    // index harus di kurungin gini kalau pakai variable
+                    [index] : {
+                        $set: { 
+                            message: 'test', show:false 
+                        } 
+                    } 
+                } )
+          })
     }
 
     renderAlert(val, index){
@@ -45,11 +60,8 @@ class Login extends React.Component {
 
     render(){
         // console.log(this.props.state);
-        let arr = this.state.info;
-        const urlParams = new URLSearchParams(window.location.search);
-        const info = urlParams.get('info');
-        if(info)
-            arr.push({message: info, show: true});
+        const arr = this.state.redirectionMessage;
+        console.log(arr);
         return(
             <header className="App-header">
                 { arr.map( (val, index) => this.renderAlert(val, index) )}

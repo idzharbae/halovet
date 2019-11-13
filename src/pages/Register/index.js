@@ -29,7 +29,7 @@ class Register extends React.Component{
     axios.post('http://0.0.0.0:8000/account/register', queryString.stringify({ name, email, password }), config)
       .then((result) => {
         console.log(result);
-        window.location.href = '/login?info=Silahkan%20login.';
+        window.location.href = '/login?redirectionMessage=Silahkan%20login.';
       });
   }
 
