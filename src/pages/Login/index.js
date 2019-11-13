@@ -5,11 +5,12 @@ import './Login.css';
 class Login extends React.Component {
     constructor(props){
         super(props);
-        // this.props.state = { info : [] };
+        this.state = { info : [] };
     }
 
     componentDidMount(){
-
+        if(this.props.state)
+            this.setState({ info : this.props.state.info});
     }
 
     componentWillUnmount(){
@@ -17,9 +18,19 @@ class Login extends React.Component {
     }
 
     closeAlert(index){
-        let arr = this.props.state.info;
-        arr[index] = false;
-        this.setState({ info : arr }); 
+        this.setState(state => {
+            const list = state.info.map((item, j) => {
+                console.log(j);
+              if (j === index) {
+                return {message : item.message, show : false};
+              } else {
+                return item;
+              }
+            });
+            return {
+              list,
+            };
+        });
     }
 
     renderAlert(val, index){
@@ -34,7 +45,11 @@ class Login extends React.Component {
 
     render(){
         // console.log(this.props.state);
-        let arr = (this.props.state)? this.props.state.info : [];
+        let arr = this.state.info;
+        const urlParams = new URLSearchParams(window.location.search);
+        const info = urlParams.get('info');
+        if(info)
+            arr.push({message: info, show: true});
         return(
             <header className="App-header">
                 { arr.map( (val, index) => this.renderAlert(val, index) )}
