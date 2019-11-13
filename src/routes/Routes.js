@@ -6,6 +6,8 @@ const Routes = {
   "/": () => <Pages.Home />,
   "/login": () => <Pages.Login />,
   "/register": () => <Pages.Register />,
+  "/artikel": () => <Pages.Artikel />,
+  "/forum": () => <Pages.Forum />,
   "/secret" : () => (getSession())? 
                         <Pages.Secret />:
                         <Pages.Login  state={ {info : [ { message:"Login terlebih dahulu.", show: true} ]} } />,

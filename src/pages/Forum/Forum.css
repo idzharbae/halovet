@@ -1,0 +1,16 @@
+.gambar{
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 100%;
+  
+}
+
+.cari{
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}

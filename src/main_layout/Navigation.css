@@ -1,0 +1,19 @@
+.navbar{
+    background-color: #8089a6;
+  }
+
+#button-login{
+    background-color: #ecded1;
+    border:none;
+    color:#b17287;
+  }
+   
+#button-register{
+    background-color: #ecded1;
+    border:none;
+    color:#b17287;
+}
+
+#logo{
+    color:#455275;
+}

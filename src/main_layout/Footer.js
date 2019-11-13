@@ -5,83 +5,52 @@ import './Footer.css';
 class Footer extends Component {
   render() {
     return (
-      <footer className="footer">
-        <Container fluid style={ { backgroundColor: '#eff5f5'} }>
-
-        {/* <button onClick="topFunction()" id="to-top" title="Go to top">Top</button> */}
-
-        <Row noGutters>
-        <Col md={3} sm={6} xs={12} >
-            <ul>
-            <li className="col-heading">Subheading</li>
-            <li>
-                <i className="fa fa-phone" aria-hidden="true"></i><a href="#">99-999-999-9999</a>
-            </li>
-            <li>
-                <i className="fa fa-mobile" aria-hidden="true"></i><a href="#">SMS Message</a>
-            </li>
-            <li>
-                <i className="fa fa-map-marker" aria-hidden="true"></i><a href="#">Address</a>
-            </li> 
-            <li>
-                <i className="fa fa-envelope-square" aria-hidden="true"></i><a href="#">Email Us</a>  
-            </li> 
-            </ul>
-        </Col>     
-
-        <Col md={3} sm={6} xs={12} >
-            <ul>
-            <li className="col-heading">Subheading</li>
-            <li><a href="#">Link to page</a></li>
-            <li><a href="#">Link to page</a></li>
-            <li><a href="#">Link to page</a></li>
-            <li><a href="#">Link to page</a></li>
-            </ul>
-        </Col>      
-
-        <Col md={3} sm={6} xs={12} >
-            <ul>
-            <li className="col-heading">Subheading</li>
-            <li><a href="#">Link to page</a></li>
-            <li><a href="#">Link to page</a></li>
-            <li><a href="#">Link to page</a></li>
-            <li><a href="#">Link to page</a></li>
-            </ul>
-        </Col>
-        
-        <Col md={3} sm={6} xs={12} >
-            <ul>
-            <li className="col-heading">Subheading</li>
-            <li><a href="#">Link to page</a></li>
-            <li><a href="#">Link to page</a></li>
-            <li><a href="#">Link to page</a></li>
-            <li><a href="#">Link to page</a></li>
-            </ul>
-        </Col>
-        </Row> 
-
-        <Row noGutters id="bottom-footer" >
-        
-        <div className="col-xs-12 col-md-5 text-center" >
-            <ul className="vertical-links small">
-                <li><a href="#">Privacy</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">Site Map</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
+        <footer class="footer bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+              <ul class="list-inline mb-2">
+                <li class="list-inline-item">
+                  <a href="#">About</a>
+                </li>
+                <li class="list-inline-item">&sdot;</li>
+                <li class="list-inline-item">
+                  <a href="#">Contact</a>
+                </li>
+                <li class="list-inline-item">&sdot;</li>
+                <li class="list-inline-item">
+                  <a href="#">Terms of Use</a>
+                </li>
+                <li class="list-inline-item">&sdot;</li>
+                <li class="list-inline-item">
+                  <a href="#">Privacy Policy</a>
+                </li>
+              </ul>
+              <p class="text-muted small mb-4 mb-lg-0">&copy; Halovet 2019. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item mr-3">
+                  <a href="#">
+                    <i class="fab fa-facebook fa-2x fa-fw"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item mr-3">
+                  <a href="#">
+                    <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="#">
+                    <i class="fab fa-instagram fa-2x fa-fw"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className="col-xs-12 col-md-2 text-center" >
-            <p><i className="fa fa-heart-o" aria-hidden="true"></i></p>
-        </div>
-        <div className="col-xs-12 col-md-5 text-center" >
-            <ul>
-            <li className="small">© Copyright 2019 Website by <a href="#" style={ {color : 'white'}, {fontWeight:500} }>Developr</a>. All Rights reserved.</li>
-            </ul>
-        </div>
-        </Row> 
-
-        </Container>
       </footer>
+
     );
   }
 }
