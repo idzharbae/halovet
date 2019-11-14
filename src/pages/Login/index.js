@@ -11,7 +11,8 @@ class Login extends React.Component {
         this.state = { 
             email: '',
             password: '',
-            alertMessage : [] 
+            alertMessage : [],
+            setAuth: null
         };
     }
     addAlert(message, variant){
@@ -31,7 +32,7 @@ class Login extends React.Component {
     componentDidMount(){
         // get redirection message from props
         if(this.props.state)
-            this.setState({ alertMessage : this.props.state.alertMessage});
+            this.setState(this.props.state);
         // get redirection message from url param
         const urlParams = new URLSearchParams(window.location.search);
         const data = urlParams.get('redirectionMessage');
@@ -75,23 +76,27 @@ class Login extends React.Component {
         let config = {
             headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic '+ btoa(email+':'+password)
             }
         };
         const data = queryString.stringify({ email, password }).replace(/%20/g,'+');
-        console.log(data);
         axios.post('http://0.0.0.0:8000/account/login', data, config)
             .then((result) => {
-            console.log(result);
+            // console.log(result);
             const response = result.data;
-            if(response.Status === true)
-                window.location.href = '/?redirectionMessage=Anda telah login.';
+            if(response.Status === true){
+                // console.log(response.Data.jwtToken);
+                // console.log(this.state.setAuth);
+                this.state.setAuth(response.Data.jwtToken);
+                // window.location.href = '/?redirectionMessage=Anda telah login.';
+            }
             else
                 this.addAlert('Login gagal: '+response.Message, "danger");
             }).catch((e) => {
                 this.addAlert('Login gagal: terjadi kesalahan pada server.', 'danger');
-                this.addAlert(e.response.data, 'danger');
-                console.log(e.response);
+                if(e.response){
+                    this.addAlert(e.response.data, 'danger');
+                    console.log(e.response);
+                }
             });
     }
 
