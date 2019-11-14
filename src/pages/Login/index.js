@@ -11,60 +11,21 @@ class Login extends React.Component {
         this.state = { 
             email: '',
             password: '',
-            alertMessage : [],
             setAuth: null
         };
     }
-    addAlert(message, variant){
-        this.setState({
-          alertMessage: update(
-              this.state.alertMessage, {
-                  $push : [
-                      {
-                          message: message, 
-                          show: true,
-                          variant: variant
-                      }
-                  ] 
-              })
-        })
-      }
     componentDidMount(){
-        // get redirection message from props
+        // map props to state
         if(this.props.state)
             this.setState(this.props.state);
         // get redirection message from url param
         const urlParams = new URLSearchParams(window.location.search);
         const data = urlParams.get('redirectionMessage');
         if(data)
-            this.addAlert(data, "success");
+            this.props.addAlert(data, "success");
     }
 
     componentWillUnmount(){
-        this.setState({ alertMessage : [] });
-    }
-
-    closeAlert(index){
-        this.setState({
-            alertMessage: update(
-                this.state.alertMessage, { 
-                    // index harus di kurungin gini kalau pakai variable
-                    [index] : {
-                        $set: { 
-                            show:false 
-                        } 
-                    } 
-                } )
-          })
-    }
-
-    renderAlert(val, index){
-        return <Alert 
-            hidden={ !val.show }
-            variant={ val.variant } 
-            key={ index } 
-            dismissible 
-            onClose={ () => this.closeAlert(index) }>{ val.message } </Alert >;
     }
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
@@ -81,55 +42,41 @@ class Login extends React.Component {
         const data = queryString.stringify({ email, password }).replace(/%20/g,'+');
         axios.post('http://0.0.0.0:8000/account/login', data, config)
             .then((result) => {
-            // console.log(result);
             const response = result.data;
             if(response.Status === true){
-                // console.log(response.Data.jwtToken);
-                // console.log(this.state.setAuth);
                 this.state.setAuth(response.Data.jwtToken);
-                // window.location.href = '/?redirectionMessage=Anda telah login.';
+                window.location.href = '/';
             }
             else
-                this.addAlert('Login gagal: '+response.Message, "danger");
-            }).catch((e) => {
-                this.addAlert('Login gagal: terjadi kesalahan pada server.', 'danger');
-                if(e.response){
-                    this.addAlert(e.response.data, 'danger');
-                    console.log(e.response);
-                }
+                this.props.addAlert('Login gagal: '+response.Message, "danger");
             });
     }
 
     render(){
-        // console.log(this.props.state);
-        const arr = this.state.alertMessage;
         return(
-            <header className="App-header">
-                { arr.map( (val, index) => this.renderAlert(val, index) )}
-                <Form onSubmit={this.onSubmit}>
-                    <Form.Row>
-                        <Form.Group as={Col} controlId="fromBasicEmail" sm={12} md={6}>
-                        <Form.Label>Alamat Email</Form.Label>
-                        <Form.Control onChange={this.onChange} name="email" type="email" placeholder="Masukan alamat email" />
-                        </Form.Group>
-                    </Form.Row>
+            <Form onSubmit={this.onSubmit}>
+                <Form.Row>
+                    <Form.Group as={Col} controlId="fromBasicEmail" sm={12} md={6}>
+                    <Form.Label>Alamat Email</Form.Label>
+                    <Form.Control onChange={this.onChange} name="email" type="email" placeholder="Masukan alamat email" />
+                    </Form.Group>
+                </Form.Row>
 
-                    <Form.Row>
-                        <Form.Group as={Col} controlId="formBasicPassword" sm={12} md={6}>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control onChange={ this.onChange } name="password" type="password" placeholder="Password" />
-                        </Form.Group>
-                    </Form.Row>
-                    <Form.Row>
-                        <Form.Group as={Col} controlId="formBasicCheckbox" sm={12} md={6}>
-                        <Form.Check type="checkbox" label="Remember me" />
-                        </Form.Group>
-                    </Form.Row>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Form>
-            </header>
+                <Form.Row>
+                    <Form.Group as={Col} controlId="formBasicPassword" sm={12} md={6}>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control onChange={ this.onChange } name="password" type="password" placeholder="Password" />
+                    </Form.Group>
+                </Form.Row>
+                <Form.Row>
+                    <Form.Group as={Col} controlId="formBasicCheckbox" sm={12} md={6}>
+                    <Form.Check type="checkbox" label="Remember me" />
+                    </Form.Group>
+                </Form.Row>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
         );
     }
 }

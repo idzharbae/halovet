@@ -3,49 +3,34 @@ import { Navigation, Footer } from '../main_layout';
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom'
 import * as Pages from '../pages';
-// import Routes from './Routes';
-// import { useRoutes } from 'hookrouter';
+import { Alert } from 'react-bootstrap';
 import './index.css';
-import Cookies from 'js-cookie';
+import update from 'immutability-helper';
+import { setCookie, deleteCookie, getCookie } from '../helper/cookies';
 
 class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      authorization: null
+      alertMessage: []
     }
     this.setAuth = this.setAuth.bind(this);
     this.clearAuth = this.clearAuth.bind(this);
-  }
-  getSession(){
-    const jwt = Cookies.get('__session')
-    let session
-    try {
-      if (jwt) {
-        const base64Url = jwt.split('.')[1]
-        const base64 = base64Url.replace('-', '+').replace('_', '/')
-        // what is window.atob ?
-        // https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/atob
-        session = JSON.parse(window.atob(base64))
-      }
-    } catch (error) {
-      console.log(error)
-    }  return session
+    this.addAlert = this.addAlert.bind(this);
+    this.closeAlert = this.closeAlert.bind(this);
+    this.renderAlert = this.renderAlert.bind(this);
   }
 
   setAuth(token){
-    this.setState({
-      authorization: token
-    });
+    setCookie("jwt", token, {path: "/"});
   }
 
   clearAuth(){
-    this.setState({
-      authorization: null
-    });
+    deleteCookie('jwt');
   }
 
   componentDidMount(){
@@ -53,29 +38,81 @@ class App extends React.Component{
 
   componentWillUnmount(){
   }
+  
+  addAlert(message, variant){
+    this.setState({
+      alertMessage: update(
+          this.state.alertMessage, {
+              $push : [
+                  {
+                      message: message, 
+                      show: true,
+                      variant: variant
+                  }
+              ] 
+          })
+    })
+  }
+
+  closeAlert(index){
+    this.setState({
+      alertMessage: update(
+          this.state.alertMessage, { 
+              // index harus di kurungin gini kalau pakai variable
+              [index] : {
+                  $set: { 
+                      show:false 
+                  } 
+              } 
+          } )
+    })
+  }
+  
+  renderAlert(val, index){
+      return <Alert 
+          hidden={ !val.show }
+          variant={ val.variant }
+          key={ index } 
+          dismissible 
+          onClose={ () => this.closeAlert(index) }>{ val.message } </Alert >;
+  }
 
   render(){
+    const arr = this.state.alertMessage;
+    console.log('cookie');
+    console.log(getCookie('jwt'));
     return (
+      
       <Router>
         <div className="App">
-          <Navigation />
+          <Navigation login={ getCookie('jwt') !== '' } />
+          <header className="App-header">
+            { arr.map( (val, index) => this.renderAlert(val, index) )}
           <Switch>
             <Route path='/login' component={() => {
-              return this.authorization? 
-                <Pages.Home /> :
-                <Pages.Login state={
+              if (getCookie('jwt')){
+                this.addAlert('Anda sudah login.', 'danger');
+                return <Redirect to='/' component={Pages.Home} />;
+              }
+              else
+                return <Pages.Login state={
                   {
                     setAuth: this.setAuth
                   }
-                } />
+                } addAlert={ this.addAlert } />;
             }} />
-            <Route path='/register' component={Pages.Register} />
+            <Route path='/register' component={() => {
+              return <Pages.Register 
+                addAlert = { this.addAlert }
+               />
+            }} />
             <Route path='/artikel' component={Pages.Artikel} />
             <Route path='/forum' component={Pages.Forum} />
             <Route path='/secret' component={ () => {
-                return this.getSession()? 
+                return (getCookie('jwt'))? 
                   <Pages.Secret /> : 
-                  <Pages.Login state={ 
+                  <Pages.Login 
+                  state={ 
                     {
                       alertMessage : [{ 
                         message:"Anda harus login terlebih dahulu.", 
@@ -83,12 +120,20 @@ class App extends React.Component{
                         variant: "danger"
                       }],
                       setAuth: this.setAuth
-                    } }/>;
+                    } }
+                    addAlert = { this.addAlert }
+                  />;
               }
             } />
+            <Route path='/logout' component={() => {
+              this.clearAuth();
+              this.addAlert('Anda berhasil logout','success');
+              return <Redirect to='/' component={ Pages.Home }/>
+            }} />
             <Route path='/test' component={Pages.Test} />
             <Route exact path='/' component={Pages.Home}  />
           </Switch>
+          </header>
           <Footer />
         </div>
       </Router>
