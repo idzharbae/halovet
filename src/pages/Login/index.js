@@ -1,14 +1,20 @@
 import React from 'react';
-import { Button, Form, Col, Alert } from 'react-bootstrap';
 import './Login.css';
+import PageTemplate from '../page_template';
 import update from 'immutability-helper';
 import axios from 'axios';
 import queryString from 'query-string';
+import View from './view';
 
-class Login extends React.Component {
+class Login extends PageTemplate {
     constructor(props){
         super(props);
         this.state = { 
+            view: (<View 
+                formGroup = {this.formGroup}
+                submitForm = {this.submitForm}
+                bindForm = {this.bindForm}
+            />),
             email: '',
             password: '',
             setAuth: null
@@ -24,14 +30,7 @@ class Login extends React.Component {
         if(data)
             this.props.addAlert(data, "success");
     }
-
-    componentWillUnmount(){
-    }
-    onChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
-    }
-
-    onSubmit = (e) => {
+    submitForm = (e) => {
         e.preventDefault()
         const { email, password } = this.state;
         let config = {
@@ -50,34 +49,6 @@ class Login extends React.Component {
             else
                 this.props.addAlert('Login gagal: '+response.Message, "danger");
             });
-    }
-
-    render(){
-        return(
-            <Form onSubmit={this.onSubmit}>
-                <Form.Row>
-                    <Form.Group as={Col} controlId="fromBasicEmail" sm={12} md={6}>
-                    <Form.Label>Alamat Email</Form.Label>
-                    <Form.Control onChange={this.onChange} name="email" type="email" placeholder="Masukan alamat email" />
-                    </Form.Group>
-                </Form.Row>
-
-                <Form.Row>
-                    <Form.Group as={Col} controlId="formBasicPassword" sm={12} md={6}>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control onChange={ this.onChange } name="password" type="password" placeholder="Password" />
-                    </Form.Group>
-                </Form.Row>
-                <Form.Row>
-                    <Form.Group as={Col} controlId="formBasicCheckbox" sm={12} md={6}>
-                    <Form.Check type="checkbox" label="Remember me" />
-                    </Form.Group>
-                </Form.Row>
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
-            </Form>
-        );
     }
 }
 

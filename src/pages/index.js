@@ -5,6 +5,7 @@ import Artikel from './Artikel';
 import Forum from './Forum';
 import Test from './Test';
 import Secret from './Secret';
+import Appointment from './Appointment';
 
 export{
     Home,
@@ -13,6 +14,7 @@ export{
     Forum,
     Register,
     Login,
-    Secret
+    Secret,
+    Appointment
 
 };

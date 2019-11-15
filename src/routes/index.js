@@ -131,6 +131,7 @@ class App extends React.Component{
               return <Redirect to='/' component={ Pages.Home }/>
             }} />
             <Route path='/test' component={Pages.Test} />
+            <Route path='/appointment' component={Pages.Appointment} />
             <Route exact path='/' component={Pages.Home}  />
           </Switch>
           </header>
