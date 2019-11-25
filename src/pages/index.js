@@ -8,6 +8,7 @@ import Booking from './Booking';
 import Test from './Test';
 import Secret from './Secret';
 import Profil from './Profil';
+import Appointment from './Appointment';
 
 export{
     Home,
@@ -19,6 +20,7 @@ export{
     Register,
     Profil,
     Login,
-    Secret
+    Secret,
+    Appointment
 
 };

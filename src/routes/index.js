@@ -136,6 +136,7 @@ class App extends React.Component{
             <Route path='/artikel' component={Pages.Artikel} />
             <Route path='/single' component={Pages.Single} />
             <Route path='/profil' component={Pages.Profil} />
+            <Route path='/appointment' component={Pages.Appointment} />
             <Route exact path='/' component={Pages.Home}  />
           </Switch>
           </header>
