@@ -28,9 +28,10 @@ class Navigation extends React.Component{
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/forum">Forum</Nav.Link>
+            <Nav.Link href="/booking">Booking</Nav.Link>
             <Nav.Link href="/artikel">Article</Nav.Link>
-            <Nav.Link href="#link">Booking</Nav.Link>
+            <Nav.Link href="/forum">Forum</Nav.Link>
+            <Nav.Link href="/profil">Profil</Nav.Link>
           </Nav>
           {/* <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />

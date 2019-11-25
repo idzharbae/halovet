@@ -131,6 +131,11 @@ class App extends React.Component{
               return <Redirect to='/' component={ Pages.Home }/>
             }} />
             <Route path='/test' component={Pages.Test} />
+            <Route path='/booking' component={Pages.Booking} />
+            <Route path='/forum' component={Pages.Forum} />
+            <Route path='/artikel' component={Pages.Artikel} />
+            <Route path='/single' component={Pages.Single} />
+            <Route path='/profil' component={Pages.Profil} />
             <Route exact path='/' component={Pages.Home}  />
           </Switch>
           </header>
