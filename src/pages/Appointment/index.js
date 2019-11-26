@@ -9,35 +9,64 @@ class Appointment extends PageTemplate{
     constructor(props){
         super(props);
         this.state = {
+            doctor_name: '',
+            pet_name: '',
+            complaint: '',
+            time: null,
+            appointments: [],
             view: (<View 
                 submitForm = {this.submitForm}
                 bindForm = {this.bindForm}
                 formGroup = {this.formGroup}
+                appointments = {[]}
             />),
-            doctor_name: '',
-            pet_name: '',
-            complaint: '',
-            time: null
+            config: {
+                headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Bearer '+getCookie('jwt')
+                }
+            }
         }
+    }
+    componentDidMount(){
+        axios.get('http://localhost:8000/'+getCookie('user_id')+'/appointment', this.state.config)
+            .then((result) => {
+                const responseData = result.data.Data;
+                this.setState({
+                    appointments: responseData.Appointments,
+                    view: (<View 
+                        submitForm = {this.submitForm}
+                        bindForm = {this.bindForm}
+                        formGroup = {this.formGroup}
+                        appointments = {responseData.Appointments}
+                    />)
+                });
+                // console.log(this.state.appointments);
+            })
+            .catch((e) =>{
+                if(e.response)
+                    console.log(e.response);
+            });
     }
 
     submitForm = (e) => {
         e.preventDefault()
         const { doctor_name, pet_name, complaint, time } = this.state;
-        const token = getCookie('jwt');
-        let config = {
-            headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Bearer '+token
-            }
-        };
         const data = queryString.stringify({ doctor_name, pet_name, complaint, time }).replace(/%20/g,'+');
-        axios.post('http://0.0.0.0:8000/appointment', data, config)
+        axios.post('http://0.0.0.0:8000/appointment', data, this.state.config)
             .then((result) => {
-                console.log(result);
+                const response = result.data;
+                
+                if(response.Status === true){
+                    console.log(response);
+                    this.props.addAlert('Booking berhasil.', "success");
+                }
+                else
+                    this.props.addAlert('Booking gagal: '+response.Message, "danger");
             })
             .catch((e) => {
-                console.log(e.response);
+                if(e.response)
+                    this.props.addAlert('Booking gagal: '+e.response.Message, "danger");
             });
     }
 

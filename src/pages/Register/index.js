@@ -3,19 +3,22 @@ import axios from 'axios';
 import queryString from 'query-string';
 import PageTemplate from '../page_template';
 import View from './view';
-
+import { Button, Form } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 class Register extends PageTemplate{
   constructor(props) {
     super(props);
     this.state = {
+      name: '',
+      email: '',
+      password: '',
+      redirect: null,
       view: (<View 
+        redirect = {this.state.redirect}
         formGroup = {this.formGroup}
         submitForm = {this.submitForm}
         bindForm = {this.bindForm}
-      />),
-      name: '',
-      email: '',
-      password: ''
+      />)
     };
   }
 
@@ -28,20 +31,58 @@ class Register extends PageTemplate{
       }
     };
     const data = queryString.stringify({ name, email, password }).replace(/%20/g,'+');
-    console.log(data);
+    console.log(config);
     axios.post('http://0.0.0.0:8000/account/register', data, config)
       .then((result) => {
         console.log(result);
         const response = result.data;
-        if(response.Status === true)
-          window.location.href = '/login?redirectionMessage=Silahkan%20login.';
+        if(response.Status === true){
+          this.setState({redirect : '/login'});   
+        }
         else
           this.props.addAlert('Register gagal: '+response.Message, "danger");
       }).catch((e) => {
         this.props.addAlert('Register gagal: terjadi kesalahan pada server.', 'danger');
-        this.props.addAlert(e.response.data, 'danger');
-        console.log(e.response);
+        if(e.response){
+          this.props.addAlert(e.response.data, 'danger');
+          console.log(e.response);
+        }
       });
+  }
+  render(){
+    if(this.state.redirect){
+      this.props.addAlert('Register berhasil', "success");
+      return <Redirect to={this.state.redirect} />;
+    }
+    else
+      return(
+          <Form onSubmit={this.submitForm}>
+              {this.formGroup({
+                  label: 'Nama Lengkap',
+                  name: 'name',
+                  type: 'text',
+                  placeholder: 'Masukan nama lengkap',
+                  onchange: this.bindForm
+              })}
+              {this.formGroup({
+                  label: 'Email',
+                  name: 'email',
+                  type: 'email',
+                  placeholder: 'Masukan alamat email',
+                  onchange: this.bindForm
+              })}
+              {this.formGroup({
+                  label: 'Password',
+                  name: 'password',
+                  type: 'password',
+                  placeholder: 'Password',
+                  onchange: this.bindForm
+              })}
+              <Button variant="primary" type="submit">
+                  Submit
+              </Button>
+          </Form>
+        );
   }
 }
 

@@ -24,11 +24,6 @@ class Login extends PageTemplate {
         // map props to state
         if(this.props.state)
             this.setState(this.props.state);
-        // get redirection message from url param
-        const urlParams = new URLSearchParams(window.location.search);
-        const data = urlParams.get('redirectionMessage');
-        if(data)
-            this.props.addAlert(data, "success");
     }
     submitForm = (e) => {
         e.preventDefault()
@@ -43,7 +38,7 @@ class Login extends PageTemplate {
             .then((result) => {
             const response = result.data;
             if(response.Status === true){
-                this.state.setAuth(response.Data.jwtToken);
+                this.state.setAuth(response.Data);
                 window.location.href = '/';
             }
             else

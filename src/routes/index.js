@@ -25,12 +25,14 @@ class App extends React.Component{
     this.renderAlert = this.renderAlert.bind(this);
   }
 
-  setAuth(token){
-    setCookie("jwt", token, {path: "/"});
+  setAuth(authData){
+    setCookie("jwt", authData.jwtToken, {path: "/"});
+    setCookie("user_id", authData.user.ID, {path: "/"});
   }
 
   clearAuth(){
     deleteCookie('jwt');
+    deleteCookie('user_id');
   }
 
   componentDidMount(){
@@ -131,7 +133,11 @@ class App extends React.Component{
               return <Redirect to='/' component={ Pages.Home }/>
             }} />
             <Route path='/test' component={Pages.Test} />
-            <Route path='/appointment' component={Pages.Appointment} />
+            <Route path='/appointment' component={ () =>{
+              return <Pages.Appointment 
+                addAlert = { this.addAlert }
+              />;
+            }} />
             <Route exact path='/' component={Pages.Home}  />
           </Switch>
           </header>
