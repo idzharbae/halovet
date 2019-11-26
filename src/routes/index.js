@@ -5,12 +5,14 @@ import {
   Route,
   Switch,
   Redirect
-} from 'react-router-dom'
+} from 'react-router-dom';
 import * as Pages from '../pages';
 import { Alert } from 'react-bootstrap';
 import './index.css';
 import update from 'immutability-helper';
 import { setCookie, deleteCookie, getCookie } from '../helper/cookies';
+
+
 
 class App extends React.Component{
   constructor(props){
@@ -133,20 +135,17 @@ class App extends React.Component{
               return <Redirect to='/' component={ Pages.Home }/>
             }} />
             <Route path='/test' component={Pages.Test} />
-<<<<<<< HEAD
             <Route path='/appointment' component={ () =>{
               return <Pages.Appointment 
                 addAlert = { this.addAlert }
               />;
             }} />
-=======
             <Route path='/booking' component={Pages.Booking} />
             <Route path='/forum' component={Pages.Forum} />
             <Route path='/artikel' component={Pages.Artikel} />
             <Route path='/single' component={Pages.Single} />
             <Route path='/profil' component={Pages.Profil} />
             <Route path='/appointment' component={Pages.Appointment} />
->>>>>>> 79c66cc754fcbc7c03f977c2d95df430d03234e2
             <Route exact path='/' component={Pages.Home}  />
           </Switch>
           </header>

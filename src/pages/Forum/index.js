@@ -6,7 +6,6 @@ import { getCookie } from '../../helper/cookies';
 import React from 'react';
 import View from './view';
 
-<<<<<<< HEAD
 class Forum extends PageTemplate{
   constructor(props){
     super(props);
@@ -46,14 +45,5 @@ class Forum extends PageTemplate{
             console.log(e.response);
         });
   }
-=======
-function Forum(){
-    return(
-      <div>
-        
-        </div>
-      
-    );
->>>>>>> 79c66cc754fcbc7c03f977c2d95df430d03234e2
 }
 export default Forum;

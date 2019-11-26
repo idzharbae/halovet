@@ -30,12 +30,9 @@ class Navigation extends React.Component{
           <Nav className="mr-auto">
             <Nav.Link href="/booking">Booking</Nav.Link>
             <Nav.Link href="/artikel">Article</Nav.Link>
-<<<<<<< HEAD
             <Nav.Link href="/appointment">Booking</Nav.Link>
-=======
             <Nav.Link href="/forum">Forum</Nav.Link>
             <Nav.Link href="/profil">Profil</Nav.Link>
->>>>>>> 79c66cc754fcbc7c03f977c2d95df430d03234e2
           </Nav>
           {/* <Form inline>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
