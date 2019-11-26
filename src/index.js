@@ -13,7 +13,7 @@ import {
     Route,
     Switch,
     Redirect
-  } from 'react-router-dom'
+  } from 'react-router-dom';
 
 
 
