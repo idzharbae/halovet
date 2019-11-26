@@ -133,11 +133,20 @@ class App extends React.Component{
               return <Redirect to='/' component={ Pages.Home }/>
             }} />
             <Route path='/test' component={Pages.Test} />
+<<<<<<< HEAD
             <Route path='/appointment' component={ () =>{
               return <Pages.Appointment 
                 addAlert = { this.addAlert }
               />;
             }} />
+=======
+            <Route path='/booking' component={Pages.Booking} />
+            <Route path='/forum' component={Pages.Forum} />
+            <Route path='/artikel' component={Pages.Artikel} />
+            <Route path='/single' component={Pages.Single} />
+            <Route path='/profil' component={Pages.Profil} />
+            <Route path='/appointment' component={Pages.Appointment} />
+>>>>>>> 79c66cc754fcbc7c03f977c2d95df430d03234e2
             <Route exact path='/' component={Pages.Home}  />
           </Switch>
           </header>

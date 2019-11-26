@@ -8,7 +8,9 @@ function Routes(){
     "/login": () => <Pages.Login />,
     "/register": () => <Pages.Register />,
     "/artikel": () => <Pages.Artikel />,
+    "/single": () => <Pages.Single/>,
     "/forum": () => <Pages.Forum />,
+    "/booking": () => <Pages.Booking />,
     "/secret" : () => (getSession())? 
                           <Pages.Secret />:
                           <Pages.Login  state={ {alertMessage : [ 
