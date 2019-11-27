@@ -3,6 +3,7 @@ import Register from './Register';
 import Login from './Login';
 import Artikel from './Artikel';
 import Forum from './Forum';
+import ForumPage from './ForumPage';
 import Single from './Single';
 import Booking from './Booking';
 import Test from './Test';
@@ -16,6 +17,7 @@ export{
     Test,
     Artikel,
     Forum,
+    ForumPage,
     Single,
     Booking,
     Register,

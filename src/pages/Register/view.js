@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form,Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import './Register.css';
 
@@ -10,6 +10,9 @@ const View = (props) => {
         return <Redirect to={props.redirect} />;
     }
     return(
+        <div style={{backgroundImage: "url('/img/Blue.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
+         <Container style={{backgroundColor: "white"}}>
+        <h3 style={{padding: '50px 100px 0px 500px',color:'#0080ff'}}>Register</h3>
         <Form onSubmit={props.submitForm}>
             {props.formGroup({
                 label: 'Nama Lengkap',
@@ -36,6 +39,8 @@ const View = (props) => {
                 Submit
             </Button>
         </Form>
+        </Container>
+        </div>
     );
 }
 

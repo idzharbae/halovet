@@ -29,6 +29,8 @@ class Appointment extends PageTemplate{
         }
     }
     componentDidMount(){
+        console.log("PROPS");
+        console.log(this.props);
         axios.get('http://localhost:8000/'+getCookie('user_id')+'/appointment', this.state.config)
             .then((result) => {
                 const responseData = result.data.Data;

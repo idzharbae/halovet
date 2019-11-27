@@ -18,22 +18,19 @@ const View = (props) => {
     })
         
     return(
-    <div>
-        <Container>
-            <Row>
-                <h1 text="black" style={{color: "black", marginTop: "15px"}}>Pertanyaan dari pengguna</h1>
-            </Row>
-            {topics}
-        </Container>
-    
+        <div style={{backgroundImage: "url('/img/Blue.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
+        <Container style={{backgroundColor: "white"}}>
+       
     <Row sm={12}>
         <Col sm={12}>
     <Card style={{
       backgroundImage: `url(${background})`,
       minHeight: `500px`
     }} sm={12}>
+
+
         <Card.Body>
-          <h3 style={{padding: '50px 100px 0px 500px',color:'#0080ff'}}>Forum tanya jawab</h3>
+          <h3 style={{padding: '50px 100px 0px 400px',color:'#0080ff'}}>Forum tanya jawab</h3>
           <Form onSubmit={props.submitForm}>
             {props.formGroup({
                 label: 'Judul',
@@ -52,13 +49,13 @@ const View = (props) => {
                 placeholder: 'Kategori',
                 onchange: props.bindForm
             })}
-            {props.formGroup({
-                label: 'Konten',
-                name: 'content',
-                type: 'text',
-                placeholder: 'Konten',
-                onchange: props.bindForm
-            })}
+            <Form.Row>
+                <Form.Group as={Col} sm={12} md={6}>
+                <Form.Label>Content</Form.Label>
+                <Form.Control as="textarea" onChange={props.bindForm}
+                 name="content"></Form.Control>
+                </Form.Group>
+            </Form.Row>
             <Button variant="primary" type="submit">
                 Submit
             </Button>
@@ -67,6 +64,7 @@ const View = (props) => {
     </Card>
         </Col>
     </Row>
+    </Container>
     </div>
     );
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 import queryString from 'query-string';
 import PageTemplate from '../page_template';
 import View from './view';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form ,Container} from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 class Register extends PageTemplate{
   constructor(props) {
@@ -56,6 +56,9 @@ class Register extends PageTemplate{
     }
     else
       return(
+        <div style={{backgroundImage: "url('/img/Blue.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
+        <Container style={{backgroundColor: "white"}}>
+        <h3 style={{padding: '50px 100px 0px 500px',color:'#0080ff'}}>Register</h3>
           <Form onSubmit={this.submitForm}>
               {this.formGroup({
                   label: 'Nama Lengkap',
@@ -82,6 +85,8 @@ class Register extends PageTemplate{
                   Submit
               </Button>
           </Form>
+          </Container>
+          </div>
         );
   }
 }

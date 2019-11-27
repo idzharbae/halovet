@@ -79,8 +79,10 @@ class Forum extends PageTemplate{
           console.log('response');
           this.props.addAlert('Berhasil menambah post', "success");
         }
-        else
+        else{
             this.props.addAlert('Post gagal: '+response.Message, "danger");
+            console.log(response);
+          }
         }).catch((e) => {
           if(e.response)
             console.log(e.response);
