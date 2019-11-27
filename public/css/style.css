@@ -74,11 +74,15 @@ button {
 }
 
 /* line 41, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/theme-default.scss */
-h1, h2, h3, h4, h5 {
+h1, h2, h4, h5 {
   font-family: "Poppins", sans-serif;
-  color: #1F1F1F;
+  color: white;
 }
 
+h3 {
+  font-family: "Poppins", sans-serif;
+  color: black;
+}
 /* line 45, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/theme-default.scss */
 h1 a,
 h2 a,
@@ -2830,12 +2834,12 @@ h3 {
 
 /* line 58, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_tesmonial.scss */
 .testmonial_bg_1 {
-  background-image: url(../img/testmonial/1.png);
+  background-image: url(../img/testmonial/1.jpg);
 }
 
 /* line 61, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_tesmonial.scss */
 .testmonial_bg_2 {
-  background-image: url(../img/testmonial/2.png);
+  background-image: url(../img/testmonial/2.jpg);
 }
 
 /* line 1, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_service.scss */

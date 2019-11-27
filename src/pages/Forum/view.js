@@ -9,7 +9,7 @@ const View = (props) => {
       minHeight: `500px`
     }}>
         <Card.Body>
-          <Card.Title>Forum tanya jawab</Card.Title>
+          <h3 style={{padding: '50px 100px 0px 500px',color:'#0080ff'}}>Forum tanya jawab</h3>
           <Form onSubmit={props.submitForm}>
             {props.formGroup({
                 label: 'Judul',

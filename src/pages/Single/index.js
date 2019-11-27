@@ -27,9 +27,9 @@ function Single() {
                      <img class="img-fluid" src="img/blog/single_blog_1.png" alt=""/>
                   </div>
                   <div class="blog_details">
-                     <h2>Second divided from form fish beast made every of seas
+                     <h3>Second divided from form fish beast made every of seas
                         all gathered us saying he our
-                     </h2>
+                     </h3>
                      <ul class="blog-info-link mt-3 mb-4">
                         <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
                         <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
@@ -216,7 +216,7 @@ function Single() {
                   </div>
                </div>
                <div class="comment-form">
-                  <h4>Leave a Reply</h4>
+                  <h3>Leave a Reply</h3>
                   <form class="form-contact comment_form" action="#" id="commentForm">
                      <div class="row">
                         <div class="col-12">
