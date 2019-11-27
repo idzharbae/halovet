@@ -63,8 +63,7 @@ class Posts extends React.Component {
                 'Authorization': 'Bearer ' + this.state.token
             }
         }
-        const {title, content} = this.state;
-        const data = queryString.stringify({ title, content }).replace(/%20/g,'+');
+        const data = new FormData(e.target);
         axios.post("http://0.0.0.0:8000/admin/article",data, config)
             .then((result) => {
                 const response = result.data;
@@ -102,6 +101,7 @@ class Posts extends React.Component {
                     <td>{x.Title}</td>
                     <td>{x.Author}</td>
                     <td>{x.Content}</td>
+                    <td><img style={{maxWidth: "300px"}} src={"http://0.0.0.0:8000/static/article/"+x.PhotoPath} /></td>
                     <td>
                         <Modals article={x} modalCloseEvent={this.modalCloseEvent.bind(this)} modalEditEvent={this.modalEditEvent.bind(this)}/>
                     </td>
@@ -110,23 +110,24 @@ class Posts extends React.Component {
         })
         return(
             <Card>
-                        <Card.Body>
-                            <Table>
-        <thead>
-        <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Content</th>
-        <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        {dataRender}
-    </tbody>
-                            </Table>
-                        </Card.Body>
-                    </Card>
+                <Card.Body>
+                    <Table>
+                        <thead>
+                            <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Content</th>
+                            <th>Gambar</th>
+                            <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {dataRender}
+                        </tbody>
+                    </Table>
+                </Card.Body>
+            </Card>
         );
     }
 
@@ -139,13 +140,20 @@ class Posts extends React.Component {
                         <Form.Row>
                             <Form.Group as={Col} sm={12} md={6}>
                             <Form.Label>Judul Artikel</Form.Label>
-                            <Form.Control onChange={this.bindForm} name="title" type="text" placeholder="Judul Artikel"/>
+                            <Form.Control name="title" type="text" placeholder="Judul Artikel"/>
                             </Form.Group>
                         </Form.Row>
                         <Form.Row>
                             <Form.Group as={Col} sm={12} md={6}>
                             <Form.Label>Konten</Form.Label>
-                            <Form.Control as="textarea" onChange={this.bindForm} name="content">
+                            <Form.Control as="textarea" name="content">
+                            </Form.Control>
+                            </Form.Group>
+                        </Form.Row>
+                        <Form.Row>
+                            <Form.Group as={Col} sm={12} md={6}>
+                            <Form.Label>Gambar</Form.Label>
+                            <Form.Control type="file" name="photo">
                             </Form.Control>
                             </Form.Group>
                         </Form.Row>

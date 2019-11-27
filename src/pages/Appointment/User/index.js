@@ -29,8 +29,9 @@ class AppointmentUser extends PageTemplate{
         }
     }
     componentDidMount(){
-        axios.get('http://localhost:8000/appointment/user/'+getCookie('user_id'), this.state.config)
+        axios.get('http://localhost:8000/appointment/user/'+getCookie('user_id')+"?limitstart=0&limit=5", this.state.config)
             .then((result) => {
+                console.log(result);
                 const responseData = result.data.Data;
                 this.setState({
                     view: <View 
@@ -43,6 +44,8 @@ class AppointmentUser extends PageTemplate{
             .catch((e) =>{
                 if(e.response)
                     console.log(e.response);
+                else
+                    console.log(e);
             });
     }
 
