@@ -13,7 +13,7 @@ class Forum extends PageTemplate{
     super(props);
     this.state = { 
       title: '',
-      category: '',
+      category: 'penyakit kulit',
       content: '',
       view: <View 
             submitForm = {this.submitForm}

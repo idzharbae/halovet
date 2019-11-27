@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import "./Navigation.css"
+import { getCookie } from '../helper/cookies';
 
 class Navigation extends React.Component{
   constructor(props){
@@ -17,7 +18,14 @@ class Navigation extends React.Component{
           <Button>Register</Button>
       </Nav.Link>
     </Nav>):
-    (<Nav>
+    (getCookie('role') == "3"?<Nav>
+      <Nav.Link href="/admin">
+        <Button>admin panel</Button>
+      </Nav.Link>
+    <Nav.Link href="/logout">
+        <Button>logout</Button>
+    </Nav.Link>
+  </Nav>:<Nav>
       <Nav.Link href="/logout">
           <Button>logout</Button>
       </Nav.Link>

@@ -30,6 +30,7 @@ class App extends React.Component{
   setAuth(authData){
     setCookie("jwt", authData.jwtToken, {path: "/"});
     setCookie("user_id", authData.user.ID, {path: "/"});
+    setCookie("role", authData.user.Role, {path: "/"});
   }
 
   clearAuth(){
@@ -140,6 +141,12 @@ class App extends React.Component{
               return <Redirect to='/' component={ Pages.Home }/>
             }} />
             <Route path='/test' component={Pages.Test} />
+            <Route path='/appointment/user/:userId' component={ (props) =>{
+              return <Pages.AppointmentUser 
+                userId = {props.userId}
+                addAlert = { this.addAlert }
+              />;
+            }} />
             <Route path='/appointment' component={ () =>{
               return <Pages.Appointment 
                 addAlert = { this.addAlert }
