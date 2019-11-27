@@ -9,6 +9,7 @@ import Test from './Test';
 import Secret from './Secret';
 import Profil from './Profil';
 import Appointment from './Appointment';
+import AppointmentUser from './Appointment/User';
 import ForumSingle from './ForumSingle';
 
 export{
@@ -23,6 +24,7 @@ export{
     Login,
     Secret,
     Appointment,
-    ForumSingle
+    ForumSingle,
+    AppointmentUser
 
 };

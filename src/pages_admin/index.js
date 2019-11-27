@@ -84,7 +84,7 @@ class Admin extends Component {
                 <Button btnStyle="flat" onClick={this.navigate('/')}>
                     Home
                 </Button>
-                <Button btnStyle="flat" onClick={this.navigate('devices')}>
+                {/* <Button btnStyle="flat" onClick={this.navigate('devices')}>
                     Devices
                 </Button>
                 <Button btnStyle="flat" onClick={this.navigate('reports')}>
@@ -102,7 +102,7 @@ class Admin extends Component {
                             Network
                         </MenuItem>
                     </Dropdown.Menu>
-                </Dropdown>
+                </Dropdown> */}
             </ButtonGroup>
         );
     }

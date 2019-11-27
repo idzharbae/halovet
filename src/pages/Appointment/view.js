@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Form, Row, Col, Container } from 'react-bootstrap';
 import styles from './appointment.module.css';
+import { getCookie } from '../../helper/cookies';
+
 const View = (props) => {
     const appointments = [];
     for(let i = 0; i < props.appointments.length; i++){
@@ -62,7 +64,11 @@ const View = (props) => {
                 </Button>
             </Form>
         </Row>
-        
+        <Row>
+            <Form>
+                <p style={{float:"right"}}><a href={"/appointment/user/"+getCookie('user_id')}>Appointment yang telah anda lakukan</a></p>
+            </Form>
+        </Row>
   </Container>
   </div>
   );
