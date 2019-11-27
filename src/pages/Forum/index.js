@@ -14,7 +14,13 @@ class Forum extends PageTemplate{
       title: '',
       category: '',
       content: '',
-      view: <div></div>,
+      view: <View 
+            submitForm = {this.submitForm}
+            formGroup = {this.formGroup}
+            bindForm = {this.bindForm}
+            formSelection = {this.formSelection}
+            topics = {[]}
+          />,
       config: {
         headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -35,7 +41,7 @@ class Forum extends PageTemplate{
             formGroup = {this.formGroup}
             bindForm = {this.bindForm}
             formSelection = {this.formSelection}
-            topics = {response.Data.Appointments}
+            topics = {response.Data.Forums}
           />
           })
         }
