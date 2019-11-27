@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image'
 
 function Profil(){
     return(
-      <div style={{backgroundImage: "url('/img/Blue.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
+      <div style={{backgroundImage: "url('/img/Blue3.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
       <Container style={{backgroundColor: "white"}}>
         <h3 style={{padding: '50px 100px 0px 480px',color:'#0080ff'}}>Profil User</h3>
        <Image style={{padding: '5px 1px 0px 400px', height: '300px'}} src="/img/testimonials-1.jpg" rounded />

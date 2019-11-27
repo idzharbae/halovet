@@ -17,7 +17,7 @@ const View = (props) => {
             </li>)
     }
   return (
-      <div style={{backgroundImage: "url('/img/Blue.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
+      <div style={{backgroundImage: "url('/img/Blue3.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
     <Container style={{backgroundColor:"white"}}>
         
         <Row>

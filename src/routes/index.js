@@ -155,7 +155,9 @@ class App extends React.Component{
             <Route path='/booking' component={Pages.Booking} />
             <Route path='/single' component={Pages.Single} />
             <Route path='/profil' component={Pages.Profil} />
-            <Route path='/forumPage' component={Pages.ForumPage} />
+            <Route path='/forumPage' component={(props) => {
+              return <Pages.ForumPage addAlert={this.addAlert} />;
+            }} />
             <Route exact path='/' component={Pages.Home}  />
           </Switch>
           </header>

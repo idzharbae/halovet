@@ -56,7 +56,7 @@ class Register extends PageTemplate{
     }
     else
       return(
-        <div style={{backgroundImage: "url('/img/Blue.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
+        <div style={{backgroundImage: "url('/img/Blue1.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
         <Container style={{backgroundColor: "white"}}>
         <h3 style={{padding: '50px 100px 0px 500px',color:'#0080ff'}}>Register</h3>
           <Form onSubmit={this.submitForm}>

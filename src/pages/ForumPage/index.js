@@ -42,6 +42,7 @@ class ForumPage extends React.Component {
                 console.log(e.response);
                 if(e.response.data === "Token is expired\n")
                     this.props.addAlert("Session anda telah hangus silahkan login kembali.", "danger");
+                    window.location.href="/logout";
                 }
                 
             })
@@ -53,9 +54,9 @@ class ForumPage extends React.Component {
         ensureArray(topics).forEach((topic) => {
             renderTopics.push(
                 <Card>
-                    <Card.Header>Date:</Card.Header>
+                    <Card.Header>{topic.Category.CategoryTitle}</Card.Header>
                     <Card.Body>
-                        <Card.Title style={{color: '#0080ff'}}> <a href="/">{topic.Title}</a></Card.Title>
+                        <Card.Title style={{color: '#0080ff'}}> <a href={"/forum/post/"+topic.TopicID.toString()}>{topic.Title}</a></Card.Title>
                         <Card.Text >{topic.Content}</Card.Text>
                         <Card.Text style={{float: 'right'}}>{topic.Author}</Card.Text>
                     </Card.Body>
