@@ -34,7 +34,7 @@ function Artikel(){
 
                             <div class="blog_details">
                                 <a class="d-inline-block" href="/single">
-                                    <h2>Google inks pact for new 35-storey office</h2>
+                                    <h3>Google inks pact for new 35-storey office</h3>
                                 </a>
                                 <p>That dominion stars lights dominion divide years for fourth have don't stars is that
                                     he earth it first without heaven in place seed it second morning saying.</p>
@@ -56,7 +56,7 @@ function Artikel(){
 
                             <div class="blog_details">
                                 <a class="d-inline-block" href="single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
+                                    <h3>Google inks pact for new 35-storey office</h3>
                                 </a>
                                 <p>That dominion stars lights dominion divide years for fourth have don't stars is that
                                     he earth it first without heaven in place seed it second morning saying.</p>
@@ -78,7 +78,7 @@ function Artikel(){
 
                             <div class="blog_details">
                                 <a class="d-inline-block" href="single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
+                                    <h3>Google inks pact for new 35-storey office</h3>
                                 </a>
                                 <p>That dominion stars lights dominion divide years for fourth have don't stars is that
                                     he earth it first without heaven in place seed it second morning saying.</p>
@@ -100,7 +100,7 @@ function Artikel(){
 
                             <div class="blog_details">
                                 <a class="d-inline-block" href="single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
+                                    <h3>Google inks pact for new 35-storey office</h3>
                                 </a>
                                 <p>That dominion stars lights dominion divide years for fourth have don't stars is that
                                     he earth it first without heaven in place seed it second morning saying.</p>
@@ -122,7 +122,7 @@ function Artikel(){
 
                             <div class="blog_details">
                                 <a class="d-inline-block" href="single-blog.html">
-                                    <h2>Google inks pact for new 35-storey office</h2>
+                                    <h3>Google inks pact for new 35-storey office</h3>
                                 </a>
                                 <p>That dominion stars lights dominion divide years for fourth have don't stars is that
                                     he earth it first without heaven in place seed it second morning saying.</p>

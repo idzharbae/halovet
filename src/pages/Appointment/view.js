@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form, Row, Col, Container } from 'react-bootstrap';
-
+import styles from './appointment.module.css';
 const View = (props) => {
     const appointments = [];
     for(let i = 0; i < props.appointments.length; i++){
@@ -15,9 +15,11 @@ const View = (props) => {
             </li>)
     }
   return (
-    <Container>
+      <div style={{backgroundImage: "url('/img/Blue.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
+    <Container style={{backgroundColor:"white"}}>
+        
         <Row>
-            <h1>Your Appointments</h1>
+            <h3 style={{padding: '50px 100px 0px 400px',color:'#0080ff'}}>Booking Dokter Hewan</h3>
 
         </Row>
         <Row>
@@ -62,6 +64,7 @@ const View = (props) => {
         </Row>
         
   </Container>
+  </div>
   );
 }
 

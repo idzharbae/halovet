@@ -36,55 +36,16 @@ class Home extends Component{
 
     return(
       <div>
-      <div class="slider_area">
-        <div class="slider_active owl-carousel">
-            <div class="single_slider  d-flex align-items-center slider_bg_2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="slider_text ">
-                                <h3> <span>Health care</span> 
-                                    For Hole Family </h3>
-                                <p>In healthcare sector, service excellence is the facility of  the hospital as
-                                    healthcare service provider to consistently.</p>
-                                <a href="#" class="boxed-btn3">Check Our Services</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single_slider  d-flex align-items-center slider_bg_1">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="slider_text ">
-                                <h3> <span>Health care</span> 
-                                    For Hole Family </h3>
-                                <p>In healthcare sector, service excellence is the facility of  the hospital as
-                                    healthcare service provider to consistently.</p>
-                                <a href="#" class="boxed-btn3">Check Our Services</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single_slider  d-flex align-items-center slider_bg_2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="slider_text ">
-                                <h3> <span>Health care</span> 
-                                    For Hole Family </h3>
-                                <p>In healthcare sector, service excellence is the facility of  the hospital as
-                                    healthcare service provider to consistently.</p>
-                                <a href="#" class="boxed-btn3">Check Our Services</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="mb-5">Selamat Datang di Halovet!</h1>
         </div>
+      </div>
     </div>
+  </header>
 <section class="features-icons bg-light text-center">
 <div class="container">
  <div class="row">
@@ -125,26 +86,25 @@ class Home extends Component{
                 <div class="col-xl-6 col-lg-6">
                     <div class="welcome_thumb">
                         <div class="thumb_1">
-                            <img src="img/about/1.png" alt=""/>
+                            <img src="img/huhe.jpg" alt=""/>
                         </div>
                         <div class="thumb_2">
-                            <img src="img/about/2.png" alt=""/>
+                            <img src="img/huhe1.jpg" alt=""/>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6">
                     <div class="welcome_docmed_info">
-                        <h2>Welcome to Docmed</h2>
-                        <h3>Best Care For Your 
-                                Good Health</h3>
-                        <p>Esteem spirit temper too say adieus who direct esteem.
-                                It esteems luckily or picture placing drawing. Apartments frequently or motionless on reasonable projecting expression.</p>
+                        <h2>Halovet</h2>
+                        <h3>Konsultasi Kesehatan Hewan Peliharaan Anda</h3>
+                        <p>Halovet merupakan tempat bagi anda untuk booking rumah sakit hewan, mencari artikel kesehatan hewan dan tanya jawab dengan dokter hewan terpercaya di forum Halovet .
+                        </p>
                         <ul>
-                            <li> <i class="flaticon-right"></i> Apartments frequently or motionless. </li>
-                            <li> <i class="flaticon-right"></i> Duis aute irure dolor in reprehenderit in voluptate.</li>
-                            <li> <i class="flaticon-right"></i> Voluptatem quia voluptas sit aspernatur. </li>
+                            <li> <i class="flaticon-right"></i> Halovet sudah melayani lebih dari 5 tahun. </li>
+                            <li> <i class="flaticon-right"></i> 10 ribu++ pengguna aktif.</li>
+                            <li> <i class="flaticon-right"></i> Halovet memilki lebih dari 20 penghargaan. </li>
                         </ul>
-                        <a href="#" class="boxed-btn3-white-2">Learn More</a>
+                        
                     </div>
                 </div>
             </div>
@@ -161,12 +121,9 @@ class Home extends Component{
                                 <div class="quote">
                                     <i class="flaticon-straight-quotes"></i>
                                 </div>
-                                <p>Donec imperdiet congue orci consequat mattis. Donec rutrum porttitor 
-                                    sollicitudin. Pellentesque id dolor tempor sapien feugiat ultrices nec sed neque.
-                                   
-                                    Fusce ac mattis nulla. Morbi eget ornare dui. </p>
+                                <p>Terimakasih Halovet sudah membantu saya dalam booking dokter hewan, anjing saya bisa cepat ditangani tanpa antri di rumah sakit. </p>
                                 <div class="testmonial_author">
-                                    <h4>Asana Korim</h4>
+                                    <h4>Mama Rara</h4>
                                 </div>
                             </div>
                         </div>
@@ -181,12 +138,9 @@ class Home extends Component{
                                 <div class="quote">
                                     <i class="flaticon-straight-quotes"></i>
                                 </div>
-                                <p>Donec imperdiet congue orci consequat mattis. Donec rutrum porttitor 
-                                    sollicitudin. Pellentesque id dolor tempor sapien feugiat ultrices nec sed neque.
-                                    
-                                    Fusce ac mattis nulla. Morbi eget ornare dui. </p>
+                                <p>Halovet sudah menemani 'Kuki' kucing saya selama lebih dari 2 tahun, kucing saya jadi tidak rewel karena lama menunggu di rumah sakit.</p>
                                 <div class="testmonial_author">
-                                    <h4>Asana Korim</h4>
+                                    <h4>Papa Gugum</h4>
                                 </div>
                             </div>
                         </div>
@@ -224,12 +178,12 @@ class Home extends Component{
                         <ul class="nav" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                            aria-selected="true">Excellent Services</a>
+                            aria-selected="true">Service Terbaik</a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-                            aria-selected="false">Qualified Doctors</a>
+                            aria-selected="false">Dokter Berpengalaman</a>
                             </li>
 
 
@@ -254,16 +208,14 @@ class Home extends Component{
                                                     <div class="icon">
                                                         <i class="flaticon-first-aid-kit"></i>
                                                     </div>
-                                                    <h3>Leading edge care for Your family</h3>
-                                                    <p>Esteem spirit temper too say adieus who direct esteem.
-                                                        It esteems luckily picture placing drawing. Apartments frequently or motionless on
-                                                        reasonable projecting expression.
+                                                    <h3>Coba Halovet sekarang juga!</h3>
+                                                    <p>Daftarkan diri anda dan menjadi keluarga baru di Halovet.
                                                     </p>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-md-6">
                                                 <div class="business_thumb">
-                                                    <img src="img/about/business.png" alt=""/>
+                                                    <img src="img/huhe.jpg" alt=""/>
                                                 </div>
                                             </div>
                                         </div>

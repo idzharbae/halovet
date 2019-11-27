@@ -71,5 +71,6 @@ class Forum extends PageTemplate{
             console.log(e.response);
         });
   }
+
 }
 export default Forum;

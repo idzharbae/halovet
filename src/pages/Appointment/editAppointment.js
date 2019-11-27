@@ -1,9 +1,11 @@
 import React from 'react';
 import { Button, Form, Row, Col } from 'react-bootstrap';
+import Appointment from '.';
+import styles from './appointment.css';
 
 const EditAppointment = (props) => {
   return (
-    <Div>
+    <Div className={styles.test} >
         <Form onSubmit={props.submitForm}>
             {props.formGroup({
                 label: 'Nama Dokter',

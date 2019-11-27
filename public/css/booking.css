@@ -20,7 +20,7 @@
 	color: #191a1e;
 }
 
-.booking-form {
+.booking_form {
 	position: relative;
 	background: #fff;
 	max-width: 642px;
@@ -32,12 +32,12 @@
 	box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
-.booking-form .form-group {
+.booking_form .form-group {
 	position: relative;
 	margin-bottom: 20px;
 }
 
-.booking-form .form-control {
+.booking_form .form-control {
 	background-color: #fff;
 	height: 65px;
 	padding: 0px 15px;
@@ -53,33 +53,33 @@
 	transition: 0.2s all;
 }
 
-.booking-form .form-control::-webkit-input-placeholder {
+.booking_form .form-control::-webkit-input-placeholder {
 	color: #dfe5e9;
 }
 
-.booking-form .form-control:-ms-input-placeholder {
+.booking_form .form-control:-ms-input-placeholder {
 	color: #dfe5e9;
 }
 
-.booking-form .form-control::placeholder {
+.booking_form .form-control::placeholder {
 	color: #dfe5e9;
 }
 
-.booking-form .form-control:focus {
+.booking_form .form-control:focus {
 	background: #f9fafb;
 }
 
-.booking-form input[type="date"].form-control:invalid {
+.booking_form input[type="date"].form-control:invalid {
 	color: #dfe5e9;
 }
 
-.booking-form select.form-control {
+.booking_form select.form-control {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
 }
 
-.booking-form select.form-control+.select-arrow {
+.booking_form select.form-control+.select-arrow {
 	position: absolute;
 	right: 6px;
 	bottom: 6px;
@@ -92,14 +92,14 @@
 	font-size: 14px;
 }
 
-.booking-form select.form-control+.select-arrow:after {
+.booking_form select.form-control+.select-arrow:after {
 	content: '\279C';
 	display: block;
 	-webkit-transform: rotate(90deg);
 	transform: rotate(90deg);
 }
 
-.booking-form .form-label {
+.booking_form .form-label {
 	position: absolute;
 	top: 6px;
 	left: 20px;
@@ -111,13 +111,13 @@
 	color: #98c9ee;
 }
 
-.booking-form .form-checkbox input {
+.booking_form .form-checkbox input {
 	position: absolute !important;
 	margin-left: -9999px !important;
 	visibility: hidden !important;
 }
 
-.booking-form .form-checkbox label {
+.booking_form .form-checkbox label {
 	position: relative;
 	padding-top: 4px;
 	padding-left: 30px;
@@ -125,11 +125,11 @@
 	color: #191a1e;
 }
 
-.booking-form .form-checkbox label+label {
+.booking_form .form-checkbox label+label {
 	margin-left: 15px;
 }
 
-.booking-form .form-checkbox input+span {
+.booking_form .form-checkbox input+span {
 	position: absolute;
 	left: 2px;
 	top: 4px;
@@ -140,7 +140,7 @@
 	border-radius: 50%;
 }
 
-.booking-form .form-checkbox input+span:after {
+.booking_form .form-checkbox input+span:after {
 	content: '';
 	position: absolute;
 	top: 50%;
@@ -155,17 +155,17 @@
 	transition: 0.2s all;
 }
 
-.booking-form .form-checkbox input:not(:checked)+span:after {
+.booking_form .form-checkbox input:not(:checked)+span:after {
 	opacity: 0;
 }
 
-.booking-form .form-checkbox input:checked+span:after {
+.booking_form .form-checkbox input:checked+span:after {
 	opacity: 1;
 	width: 10px;
 	height: 10px;
 }
 
-.booking-form .submit-btn {
+.booking_form .submit-btn {
 	color: #fff;
 	background-color: #4fa3e3;
 	font-weight: 400;
