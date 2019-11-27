@@ -6,6 +6,7 @@ import { getCookie } from '../../helper/cookies';
 import React from 'react';
 import View from './view';
 import { tsImportEqualsDeclaration } from '@babel/types';
+import { Redirect } from 'react-router-dom';
 
 class Forum extends PageTemplate{
   constructor(props){
@@ -22,6 +23,9 @@ class Forum extends PageTemplate{
             topics = {[]}
           />,
       config: {
+        validateStatus: function (status) {
+          return status >= 200 && status <= 302;
+        },
         headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': 'Bearer '+ getCookie('jwt')
@@ -46,11 +50,19 @@ class Forum extends PageTemplate{
           })
         }
         else{
-          console.log(result);
+          // console.log(result);
         }
       })
       .catch((e) => {
-
+        if(e.response){
+          console.log(e.response);
+          if(e.response.data === "Token is expired\n")
+            this.props.addAlert("Session anda telah hangus silahkan login kembali.", "danger");
+            this.setState({
+              view: <Redirect to="/logout" />
+            })
+        }
+          
       })
   }
   submitForm = (e) => {
@@ -60,8 +72,11 @@ class Forum extends PageTemplate{
     console.log(data);
     axios.post('http://0.0.0.0:8000/forum', data, this.state.config)
         .then((result) => {
-        const response = result;
-        if(response.Status === true){
+        const response = result.data;
+        console.log(response.Status);
+        if(response.Status){
+          console.log(response);
+          console.log('response');
           this.props.addAlert('Berhasil menambah post', "success");
         }
         else

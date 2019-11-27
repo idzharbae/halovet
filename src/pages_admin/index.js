@@ -134,7 +134,7 @@ class Admin extends Component {
                                 Devices
                             </NavText>
                         </NavItem>
-                        <NavItem eventKey="/reports">
+                        <NavItem eventKey="/appointments">
                             <NavIcon>
                                 <i className="fa fa-fw fa-list-alt" style={{ fontSize: '1.75em', verticalAlign: 'middle' }} />
                             </NavIcon>
@@ -224,7 +224,10 @@ class Admin extends Component {
                     { alertMessage.map( (val, index) => this.renderAlert(val, index) )}
                     <Switch>
                         <Route path="/admin/articles" component={() => {
-                            return <Pages.Posts asdf='xxx' addAlert={this.addAlert.bind(this)} />;
+                            return <Pages.Posts addAlert={this.addAlert.bind(this)} />;
+                        }} />
+                        <Route path="/admin/appointments" component={() => {
+                            return <Pages.Appointments addAlert={this.addAlert.bind(this)} />;
                         }} />
                         <Route path="/admin" component={() => {
                             return <Pages.Dashboard />

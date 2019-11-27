@@ -1,23 +1,31 @@
-import { Button, Form, Col, Alert, Card, Row } from 'react-bootstrap';
+import { Button, Form, Col, Alert, Card, Row, Container } from 'react-bootstrap';
 import React from 'react';
+import ensureArray from 'ensure-array';
 
 const View = (props) => {
     const background = '/img/anjing.jpg';
     const topics = [];
-    console.log(props.topics);
-    for(let i = 0; i < props.topics.length; i++)
+    ensureArray(props.topics).forEach((topic) => {
         topics.push(
-        <Row>
-            <Col>
-            <h3>{props.topics[i].Title}</h3>
-                <p>{props.topics[i].Content}
-                {props.topics[i].Author}
-                </p>
-            </Col>
-        </Row>);
+            <Row>
+                <Col>
+                <h3><a href={"/forum/post/"+topic.TopicID.toString()}>{topic.Title}</a></h3>
+                    <p>{topic.Content}
+                    {topic.Author}
+                    </p>
+                </Col>
+            </Row>);
+    })
+        
     return(
     <div>
-    {topics}
+        <Container>
+            <Row>
+                <h1 text="black" style={{color: "black", marginTop: "15px"}}>Pertanyaan dari pengguna</h1>
+            </Row>
+            {topics}
+        </Container>
+    
     <Row sm={12}>
         <Col sm={12}>
     <Card style={{

@@ -111,7 +111,12 @@ class App extends React.Component{
                />
             }} />
             <Route path='/artikel' component={Pages.Artikel} />
-            <Route path='/forum' component={Pages.Forum} />
+             <Route path='/forum/post/:postId' component={(props) => {
+              return <Pages.ForumSingle postId={props.match.params.postId} addAlert={this.addAlert}  />;
+            }} />
+            <Route path='/forum' component={() => {
+              return <Pages.Forum addAlert= {this.addAlert} />
+            }} />
             <Route path='/secret' component={ () => {
                 return (getCookie('jwt'))? 
                   <Pages.Secret /> : 
@@ -141,11 +146,8 @@ class App extends React.Component{
               />;
             }} />
             <Route path='/booking' component={Pages.Booking} />
-            <Route path='/forum' component={Pages.Forum} />
-            <Route path='/artikel' component={Pages.Artikel} />
             <Route path='/single' component={Pages.Single} />
             <Route path='/profil' component={Pages.Profil} />
-            <Route path='/appointment' component={Pages.Appointment} />
             <Route exact path='/' component={Pages.Home}  />
           </Switch>
           </header>
