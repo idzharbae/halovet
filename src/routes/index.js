@@ -5,12 +5,14 @@ import {
   Route,
   Switch,
   Redirect
-} from 'react-router-dom'
+} from 'react-router-dom';
 import * as Pages from '../pages';
 import { Alert } from 'react-bootstrap';
 import './index.css';
 import update from 'immutability-helper';
 import { setCookie, deleteCookie, getCookie } from '../helper/cookies';
+
+
 
 class App extends React.Component{
   constructor(props){

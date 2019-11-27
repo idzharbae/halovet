@@ -1,13 +1,29 @@
-import { Button, Form, Col, Alert, Card } from 'react-bootstrap';
+import { Button, Form, Col, Alert, Card, Row } from 'react-bootstrap';
 import React from 'react';
 
 const View = (props) => {
     const background = '/img/anjing.jpg';
+    const topics = [];
+    console.log(props.topics);
+    for(let i = 0; i < props.topics.length; i++)
+        topics.push(
+        <Row>
+            <Col>
+            <h3>{props.topics[i].Title}</h3>
+                <p>{props.topics[i].Content}
+                {props.topics[i].Author}
+                </p>
+            </Col>
+        </Row>);
     return(
+    <div>
+    {topics}
+    <Row sm={12}>
+        <Col sm={12}>
     <Card style={{
       backgroundImage: `url(${background})`,
       minHeight: `500px`
-    }}>
+    }} sm={12}>
         <Card.Body>
           <h3 style={{padding: '50px 100px 0px 500px',color:'#0080ff'}}>Forum tanya jawab</h3>
           <Form onSubmit={props.submitForm}>
@@ -18,10 +34,13 @@ const View = (props) => {
                 placeholder: 'Judul Post',
                 onchange: props.bindForm
             })}
-            {props.formGroup({
+            {props.formSelection({
                 label: 'Kategori',
                 name: 'category',
-                type: 'text',
+                options: [
+                    {value:"penyakit kulit",label: "penyakit kulit"},
+                    {value:"penyakit pencernaan",label: "penyakit pencernaan"}
+                ],
                 placeholder: 'Kategori',
                 onchange: props.bindForm
             })}
@@ -38,6 +57,9 @@ const View = (props) => {
         </Form>
         </Card.Body>
     </Card>
+        </Col>
+    </Row>
+    </div>
     );
 }
 
