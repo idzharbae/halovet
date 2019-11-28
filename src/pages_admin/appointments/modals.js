@@ -24,10 +24,10 @@ class Modals extends React.Component{
         this.submitForm = this.submitForm.bind(this);
     }
     componentDidMount(){
-        const {article} = this.props;
+        const {appointment} = this.props;
         this.setState({
-            title: article.Title,
-            content: article.Content
+            title: appointment.Title,
+            content: appointment.Content
         })
     }
     showModal(){
@@ -45,7 +45,7 @@ class Modals extends React.Component{
                 'Authorization': 'Bearer ' + this.state.token
             }
         }
-        axios.delete("http://0.0.0.0:8000/admin/article/"+this.props.article.ID.toString(), config)
+        axios.delete("http://0.0.0.0:8000/admin/appointment/"+this.props.appointment.ID.toString(), config)
             .then((result) => {
                 const response = result.data;
                 console.log(response);
@@ -66,55 +66,48 @@ class Modals extends React.Component{
         this.setState({showEdit: false})
     }
     onSubmitEdit(){
+        const token = getCookie('jwt');
+        console.log("validate");
+        console.log(this.props);
         const config = {
             validateStatus: function (status) {
                 return status >= 200 && status <= 302;
             },
             headers:{
-                'Authorization': 'Bearer ' + this.state.token
+                'Authorization': 'Bearer ' + token
             }
         }
-        axios.delete("http://0.0.0.0:8000/admin/article/"+this.props.article.ID.toString(), config)
+        axios.put("http://0.0.0.0:8000/admin/appointment/"+this.props.appointment.AppointmentID.toString()+"/validatePayment",{}, config)
             .then((result) => {
                 const response = result.data;
-                console.log(response);
-                if(response.Status){
-                    this.hideModal();
-                    this.props.modalCloseEvent();
-                }
+                this.hideModal();
+                this.props.modalCloseEvent();
             })
             .catch((e) => {
+              console.log("validate");
                 if (e.response)
                     console.log(e.response);
             });
     }
     submitForm = (e) => {
-        console.log(this.state.token);
-        e.preventDefault();
-        const {article} = this.props;
+        const {appointment} = this.props;
         const config = {
             validateStatus: function (status) {
                 return status >= 200 && status <= 302;
             },
             headers:{
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Bearer ' + this.state.token
+                'Authorization': 'Bearer ' + getCookie('jwt')
             }
         }
-        const {title, content} = this.state;
-        const data = queryString.stringify({ title, content }).replace(/%20/g,'+');
-        axios.put("http://0.0.0.0:8000/admin/article/"+article.ID.toString(),data, config)
+        axios.delete("http://0.0.0.0:8000/appointment/"+this.props.appointment.AppointmentID.toString(), config)
             .then((result) => {
                 const response = result.data;
-                console.log("posting alert.");
-                this.props.addAlert("Berhasil menambah artikel", "success");
-                this.getData();
+                this.props.modalDeleteEvent();
             })
             .catch((e) => {
                 if(e.response)
                     console.log(e.response);
             });
-        this.props.modalEditEvent();
     }
 
     bindForm = (e) => {
@@ -122,15 +115,42 @@ class Modals extends React.Component{
     }
     render(){
         const {show, showEdit} = this.state;
-        const {article} = this.props;
+        const {appointment} = this.props;
+        const pembayaran = appointment.IsPaid?<></>:<><OverlayTrigger
+            key={appointment.ID}
+            placement="top"
+            overlay={
+                <Tooltip>
+                Validasi Pembayaran
+                </Tooltip>
+            }
+        >
+        <a href="#!" onClick={this.showModalEdit}><i class="fas fa-check"></i></a>
+        </OverlayTrigger>
+        <Modal show={showEdit} onHide={this.hideModalEdit} animation={false}>
+            <Modal.Header closeButton>
+            <Modal.Title>Edit "{appointment.Title}"</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            Validasi pembayaran {appointment.Pet_Owner_Name}?
+            </Modal.Body>
+            <Modal.Footer>
+            <Button variant="secondary" onClick={this.hideModalEdit}>
+                Batal
+            </Button>
+            <Button variant="primary" onClick={this.onSubmitEdit.bind(this)} >
+                Validasi
+            </Button>
+            </Modal.Footer>
+        </Modal></>;
         return (
             <div style={{display: "flex", justifyContent: "space-between"}}>
             <OverlayTrigger
-                key={article.ID}
+                key={appointment.ID}
                 placement="top"
                 overlay={
                     <Tooltip>
-                    Hapus artikel
+                    Hapus appointment
                     </Tooltip>
                 }
             >
@@ -140,61 +160,17 @@ class Modals extends React.Component{
                 <Modal.Header closeButton>
                 <Modal.Title>Konfirmasi Hapus</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Hapus artikel "{article.Title}" ?</Modal.Body>
+                <Modal.Body>Hapus appointment milik {appointment.Pet_Owner_Name} ?</Modal.Body>
                 <Modal.Footer>
                 <Button variant="secondary" onClick={this.hideModal}>
                     Close
                 </Button>
-                <Button variant="danger" onClick={this.onSubmit} >
+                <Button variant="danger" onClick={this.submitForm} >
                     Hapus
                 </Button>
                 </Modal.Footer>
             </Modal>
-            <OverlayTrigger
-                key={article.ID}
-                placement="top"
-                overlay={
-                    <Tooltip>
-                    Edit artikel
-                    </Tooltip>
-                }
-            >
-            <a href="#!" onClick={this.showModalEdit}><i className="fas fa-edit"></i></a>
-            </OverlayTrigger>
-            <Modal show={showEdit} onHide={this.hideModalEdit} animation={false}>
-                <Modal.Header closeButton>
-                <Modal.Title>Edit "{article.Title}"</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form style={{padding: "0px"}} onSubmit={this.submitForm}>
-                        <Form.Row>
-                            <Form.Group as={Col} sm={12} md={6}>
-                            <Form.Label>Judul Artikel</Form.Label>
-                            <Form.Control onChange={this.bindForm} name="title" type="text" placeholder="Judul Artikel" value={this.state.title}/>
-                            </Form.Group>
-                        </Form.Row>
-                        <Form.Row>
-                            <Form.Group as={Col} sm={12} md={6}>
-                            <Form.Label>Konten</Form.Label>
-                            <Form.Control as="textarea" onChange={this.bindForm} name="content">
-                                {article.Content}
-                            </Form.Control>
-                            </Form.Group>
-                        </Form.Row>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                <Button variant="secondary" onClick={this.hideModalEdit}>
-                    Close
-                </Button>
-                <Button variant="primary" onClick={this.submitForm} >
-                    Update
-                </Button>
-                </Modal.Footer>
-            </Modal>
+            {pembayaran}
             </div>
         );
     }

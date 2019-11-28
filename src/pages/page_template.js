@@ -19,7 +19,7 @@ class PageTemplate extends React.Component{
     }
 
     submitForm = (e) => {
-        
+
     }
 
     formGroup(args){
@@ -31,7 +31,7 @@ class PageTemplate extends React.Component{
         const placeholder = args.placeholder || "";
         const onchange = args.onchange || null;
         const hidden = args.hidden || false;
-        
+
         return(
             <Form.Row>
                 <Form.Group as={Col} sm={12} md={6}>

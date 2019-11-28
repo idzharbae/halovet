@@ -9,15 +9,16 @@ class Appointment extends PageTemplate{
     constructor(props){
         super(props);
         this.state = {
-            doctor_name: '',
+            doctor_name: 'dr Mahfouz',
             pet_name: '',
             complaint: '',
             time: null,
             appointments: [],
-            view: (<View 
+            view: (<View
                 submitForm = {this.submitForm}
                 bindForm = {this.bindForm}
                 formGroup = {this.formGroup}
+                formSelection = {this.formSelection}
                 appointments = {[]}
             />),
             config: {
@@ -36,10 +37,11 @@ class Appointment extends PageTemplate{
                 const responseData = result.data.Data;
                 this.setState({
                     appointments: responseData.Appointments,
-                    view: (<View 
+                    view: (<View
                         submitForm = {this.submitForm}
                         bindForm = {this.bindForm}
                         formGroup = {this.formGroup}
+                        formSelection=  {this.formSelection}
                         appointments = {responseData.Appointments}
                     />)
                 });
@@ -58,7 +60,7 @@ class Appointment extends PageTemplate{
         axios.post('http://0.0.0.0:8000/appointment', data, this.state.config)
             .then((result) => {
                 const response = result.data;
-                
+
                 if(response.Status === true){
                     console.log(response);
                     this.props.addAlert('Booking berhasil.', "success");

@@ -8,7 +8,7 @@ import Modals from './modals';
 
 
 class Appointments extends React.Component {
-    
+
     constructor(props){
         super(props);
         this.state = {
@@ -49,7 +49,26 @@ class Appointments extends React.Component {
                         console.log(e.response);
                     }
                 }
+            });
+        axios.get("http://0.0.0.0:8000/admin/appointment?limit=5&limitstart=0", config)
+            .then((result) => {
+                const response = result.data;
+                console.log(response);
+                if(response.Status)
+                    this.setState({
+                        data : response.Data.Appointments
+                    });
             })
+            .catch((e) => {
+                if(e.response){
+                    if(e.response.data === "Token is expired\n"){
+                        this.props.addAlert("Token expired, silahkan logout dan login kembali." , "danger");
+                        window.location.href="/logout";
+                    }else{
+                        console.log(e.response);
+                    }
+                }
+            });
     }
     submitForm = (e) => {
         console.log(this.state.token);
@@ -84,11 +103,11 @@ class Appointments extends React.Component {
     }
 
     modalCloseEvent(){
-        this.props.addAlert("Berhasil menghapus artikel.", "success");
+        this.props.addAlert("Berhasil validasi pembayaran.", "success");
         this.getData();
     }
-    modalEditEvent(){
-        this.props.addAlert("Berhasil mengupdate artikel.", "success");
+    modalDeleteEvent(){
+        this.props.addAlert("Berhasil menghapus appointment.", "success");
         this.getData();
     }
 
@@ -103,11 +122,12 @@ class Appointments extends React.Component {
                     <td>{x.Doctor_name}</td>
                     <td>{x.Complaint}</td>
                     <td>{(x.IsPaid)?"Lunas":"Belum Lunas"}</td>
+                    <td><img src={"http://0.0.0.0:8000/static/payment/"+x.PhotoPath} style={{maxWidth: "300px"}} /></td>
                     <td>
-                        <Modals article={x} modalCloseEvent={this.modalCloseEvent.bind(this)} modalEditEvent={this.modalEditEvent.bind(this)}/>
+                        <Modals appointment={x} modalCloseEvent={this.modalCloseEvent.bind(this)} modalDeleteEvent={this.modalDeleteEvent.bind(this)}/>
                     </td>
                 </tr>
-            )    
+            )
         })
         return(
             <Card>
@@ -120,6 +140,7 @@ class Appointments extends React.Component {
         <th>Dokter</th>
         <th>Keluhan</th>
         <th>Pembayaran</th>
+        <th>Bukti Pembayaran</th>
         <th>Action</th>
         </tr>
     </thead>
@@ -131,44 +152,13 @@ class Appointments extends React.Component {
                     </Card>
         );
     }
-
-    renderPostTable(){
-        return(
-            <Card>
-                <Card.Body>
-                    <Card.Title>Buat Artikel Baru</Card.Title>
-                    <Form style={{padding: "0px"}} onSubmit={this.submitForm}>
-                        <Form.Row>
-                            <Form.Group as={Col} sm={12} md={6}>
-                            <Form.Label>Judul Artikel</Form.Label>
-                            <Form.Control onChange={this.bindForm} name="title" type="text" placeholder="Judul Artikel"/>
-                            </Form.Group>
-                        </Form.Row>
-                        <Form.Row>
-                            <Form.Group as={Col} sm={12} md={6}>
-                            <Form.Label>Konten</Form.Label>
-                            <Form.Control as="textarea" onChange={this.bindForm} name="content">
-                            </Form.Control>
-                            </Form.Group>
-                        </Form.Row>
-                        <Button variant="primary" type="submit">
-                            Submit
-                        </Button>
-                    </Form>
-                </Card.Body>
-            </Card>
-        );
-    }
     render(){
         return(
             <Tabs defaultActiveKey="getAppointments" id="ArticleTabs">
                 <Tab eventKey="getAppointments" title="Appointment">
                     {this.renderGetTable()}
                 </Tab>
-                <Tab eventKey="getPayments" title="Pembayaran">
-                    {this.renderPostTable()}
-                </Tab>
-            </Tabs>    
+            </Tabs>
         );
     }
 }

@@ -23,15 +23,14 @@ const PaymentModal = (props) => {
         axios.post("http://0.0.0.0:8000/appointment/"+appointment.AppointmentID.toString()+"/uploadPayment", data, config)
             .then((result) => {
                 const response = result.data;
-                if(response.Status){
-                    console.log(response);
-                }else{
-                    console.log(response);
-                }
+                props.addAlert(response, "success");
+                handleClose();
+
             })
             .catch((e) => {
                 if(e.response)
                     console.log(e.response);
+                handleClose();
             })
     };
     return (

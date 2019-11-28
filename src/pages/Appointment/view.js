@@ -19,7 +19,7 @@ const View = (props) => {
   return (
       <div style={{backgroundImage: "url('/img/Blue3.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
     <Container style={{backgroundColor:"white"}}>
-        
+
         <Row>
             <h3 style={{padding: '50px 100px 0px 400px',color:'#0080ff'}}>Booking Dokter Hewan</h3>
 
@@ -31,11 +31,18 @@ const View = (props) => {
         </Row>
         <Row>
             <Form onSubmit={props.submitForm}>
-                {props.formGroup({
+                {props.formSelection({
                     label: 'Nama Dokter',
                     name: 'doctor_name',
                     type: 'text',
                     placeholder: 'Masukan nama dokter',
+                    options:[{
+                      value:"dr Mahfouz", label:"dr Mahfouz"
+                    },
+                    {
+                      value:"dr Boyke", label:"dr Boyke"
+                    }
+                  ],
                     onchange: props.bindForm
                     })}
                 {props.formGroup({

@@ -43,18 +43,18 @@ class App extends React.Component{
 
   componentWillUnmount(){
   }
-  
+
   addAlert(message, variant){
     this.setState({
       alertMessage: update(
           this.state.alertMessage, {
               $push : [
                   {
-                      message: message, 
+                      message: message,
                       show: true,
                       variant: variant
                   }
-              ] 
+              ]
           })
     })
   }
@@ -62,23 +62,23 @@ class App extends React.Component{
   closeAlert(index){
     this.setState({
       alertMessage: update(
-          this.state.alertMessage, { 
+          this.state.alertMessage, {
               // index harus di kurungin gini kalau pakai variable
               [index] : {
-                  $set: { 
-                      show:false 
-                  } 
-              } 
+                  $set: {
+                      show:false
+                  }
+              }
           } )
     })
   }
-  
+
   renderAlert(val, index){
-      return <Alert 
+      return <Alert
           hidden={ !val.show }
           variant={ val.variant }
-          key={ index } 
-          dismissible 
+          key={ index }
+          dismissible
           onClose={ () => this.closeAlert(index) }>{ val.message } </Alert >;
   }
 
@@ -87,7 +87,7 @@ class App extends React.Component{
     console.log('cookie');
     console.log(getCookie('jwt'));
     return (
-      
+
       <Router>
         <div className="App">
           <Navigation login={ getCookie('jwt') !== '' } />
@@ -107,7 +107,7 @@ class App extends React.Component{
                 } addAlert={ this.addAlert } />;
             }} />
             <Route path='/register' component={() => {
-              return <Pages.Register 
+              return <Pages.Register
                 addAlert = { this.addAlert }
                />
             }} />
@@ -119,13 +119,13 @@ class App extends React.Component{
               return <Pages.Forum addAlert= {this.addAlert} />
             }} />
             <Route path='/secret' component={ () => {
-                return (getCookie('jwt'))? 
-                  <Pages.Secret /> : 
-                  <Pages.Login 
-                  state={ 
+                return (getCookie('jwt'))?
+                  <Pages.Secret /> :
+                  <Pages.Login
+                  state={
                     {
-                      alertMessage : [{ 
-                        message:"Anda harus login terlebih dahulu.", 
+                      alertMessage : [{
+                        message:"Anda harus login terlebih dahulu.",
                         show: true,
                         variant: "danger"
                       }],
@@ -142,13 +142,13 @@ class App extends React.Component{
             }} />
             <Route path='/test' component={Pages.Test} />
             <Route path='/appointment/user/:userId' component={ (props) =>{
-              return <Pages.AppointmentUser 
+              return <Pages.AppointmentUser
                 userId = {props.userId}
-                addAlert = { this.addAlert }
+                addAlert = { this.addAlert.bind(this) }
               />;
             }} />
             <Route path='/appointment' component={ () =>{
-              return <Pages.Appointment 
+              return <Pages.Appointment
                 addAlert = { this.addAlert }
               />;
             }} />

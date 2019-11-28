@@ -21,7 +21,7 @@ const View = (props) => {
                         <Card.Text>
                             { appointment.IsPaid?"Lunas":"Belum Lunas" }
                         </Card.Text>
-                        <PaymentModal appointment={appointment}/>
+                        <PaymentModal appointment={appointment} addAlert={props.addAlert}/>
                     </Card.Body>
                 </Card>
              </Row>
@@ -31,7 +31,7 @@ const View = (props) => {
   return (
       <div style={{backgroundImage: "url('/img/Blue.jpg')", paddingTop: '50px',paddingBottom: '50px'}}>
     <Container style={{backgroundColor:"white"}}>
-        
+
         <Row>
             <h3 style={{padding: '50px 100px 0px 400px',color:'#0080ff'}}>Booking Dokter Hewan</h3>
 

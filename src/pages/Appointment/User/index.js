@@ -14,11 +14,12 @@ class AppointmentUser extends PageTemplate{
             complaint: '',
             time: null,
             appointments: [],
-            view: (<View 
+            view: (<View
                 submitForm = {this.submitForm}
                 bindForm = {this.bindForm}
                 formGroup = {this.formGroup}
                 appointments = {[]}
+                addAlert = {this.props.addAlert}
             />),
             config: {
                 headers: {
@@ -34,11 +35,13 @@ class AppointmentUser extends PageTemplate{
                 console.log(result);
                 const responseData = result.data.Data;
                 this.setState({
-                    view: <View 
+                    view: <View
                     submitForm = {this.submitForm}
                     bindForm = {this.bindForm}
                     formGroup = {this.formGroup}
-                    appointments = {responseData.Appointments} />
+                    appointments = {responseData.Appointments}
+                    addAlert = {this.props.addAlert}
+                  />
                 });
             })
             .catch((e) =>{
@@ -56,7 +59,7 @@ class AppointmentUser extends PageTemplate{
         axios.post('http://0.0.0.0:8000/appointment', data, this.state.config)
             .then((result) => {
                 const response = result.data;
-                
+
                 if(response.Status === true){
                     console.log(response);
                     this.props.addAlert('Booking berhasil.', "success");
